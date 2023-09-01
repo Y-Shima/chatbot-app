@@ -1,18 +1,22 @@
-// src/components/ChatBot.js
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function ChatBot() {
+  // メッセージの状態を管理するための useState フック
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
+  const messageContainerRef = useRef(null);
 
   const handleSendMessage = () => {
     if (inputMessage.trim() === '') return;
+
     const newMessage = {
       text: inputMessage,
-      user: 'user', // ここでユーザーとボットを区別することができます
+      user: 'user',
       timestamp: new Date().toLocaleTimeString(),
     };
-    setMessages([...messages, newMessage]);
+
+    // 以前のメッセージを保持しつつ、新しいメッセージを追加
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
     setInputMessage('');
 
     // ボットからのレスポンスを模擬する例（適切なレスポンスを実際に取得する必要があります）
@@ -22,13 +26,25 @@ function ChatBot() {
         user: 'bot',
         timestamp: new Date().toLocaleTimeString(),
       };
-      setMessages([...messages, botResponse]);
+      setMessages((prevMessages) => [...prevMessages, botResponse]);
     }, 1000);
   };
 
+  // 新しいメッセージが追加されたときに自動的にスクロール
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+
   return (
     <div className="chat-bot">
-      <div className="message-container">
+      {/* メッセージ表示エリア */}
+      <div
+        className="message-container"
+        ref={messageContainerRef} // メッセージ表示エリアへの参照を追加
+      >
         {messages.map((message, index) => (
           <div
             key={index}
@@ -39,6 +55,7 @@ function ChatBot() {
           </div>
         ))}
       </div>
+      {/* 入力エリア */}
       <div className="input-container">
         <input
           type="text"
