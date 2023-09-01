@@ -1,38 +1,90 @@
-.App {
+/* src/App.css */
+
+/* グローバルスタイル */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0; /* ページの背景色 */
+}
+
+/* ヘッダー */
+.App-header {
+  background-color: #00bfff; /* ヘッダーの背景色 */
+  color: white;
+  padding: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* メインコンテンツ */
+.App-main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  min-height: calc(100vh - 80px); /* ヘッダーの高さを考慮したコンテンツの最小高さ */
+}
+
+/* チャットボットコンテナ */
+.chat-bot {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 300px; /* チャットボットコンテナの幅 */
+}
+
+/* メッセージコンテナ */
+.message-container {
+  max-height: 400px; /* メッセージ表示エリアの最大高さ */
+  overflow-y: auto; /* スクロール可能にする */
+  padding: 10px;
+}
+
+/* メッセージ */
+.message {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 70%; /* メッセージの最大幅 */
+}
+
+/* ユーザーメッセージ */
+.message.user {
+  background-color: #00bfff; /* ユーザーメッセージの背景色 */
   color: white;
+  align-self: flex-end;
 }
 
-.App-link {
-  color: #61dafb;
+/* ボットメッセージ */
+.message.bot {
+  background-color: #f0f0f0; /* ボットメッセージの背景色 */
+  color: black;
+  align-self: flex-start;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 入力エリア */
+.input-container {
+  display: flex;
+  padding: 10px;
 }
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+button {
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0099cc;
+}
+
