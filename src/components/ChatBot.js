@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 function ChatBot() {
-  const API_URL = 'https://5ifs66yxa4.execute-api.ap-northeast-1.amazonaws.com/api/chat';
+  const API_URL = 'https://5ifs66yxa4.execute-api.ap-northeast-1.amazonaws.com/api/chat'
 
   // メッセージの状態を管理するための useState フック
   const [messages, setMessages] = useState([]);

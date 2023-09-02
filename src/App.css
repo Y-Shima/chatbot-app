@@ -40,7 +40,7 @@ body {
 
 /* メッセージコンテナ */
 .message-container {
-  max-height: 500px; /* メッセージ表示エリアの最大高さ */
+  max-height: 540px; /* メッセージ表示エリアの最大高さ */
   overflow-y: auto; /* スクロール可能にする */
   padding: 10px;
 }
