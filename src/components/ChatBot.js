@@ -1,33 +1,51 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 function ChatBot() {
+  const API_URL = 'https://5ifs66yxa4.execute-api.ap-northeast-1.amazonaws.com/api/chat';
+
   // メッセージの状態を管理するための useState フック
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const messageContainerRef = useRef(null);
 
+  const sendMessageToBot = async () => {
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ inputMessage }), // メッセージをJSON形式で送信
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const botResponse = data.message; // APIからの応答を取得
+        addMessage(botResponse, 'bot'); // ボットからの応答を追加
+      } else {
+        console.error('APIエラー:', response.statusText);
+      }
+    } catch (error) {
+      console.error('通信エラー:', error);
+    }
+  };
+
+  const addMessage = (text, user) => {
+    const newMessage = {
+      text: text,
+      user: user,
+      timestamp: new Date().toLocaleTimeString(),
+    };
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+  };
+
   const handleSendMessage = () => {
     if (inputMessage.trim() === '') return;
 
-    const newMessage = {
-      text: inputMessage,
-      user: 'user',
-      timestamp: new Date().toLocaleTimeString(),
-    };
-
-    // 以前のメッセージを保持しつつ、新しいメッセージを追加
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    addMessage(inputMessage, 'user');
+    // APIに送信
+    sendMessageToBot();
     setInputMessage('');
-
-    // ボットからのレスポンスを模擬する例（適切なレスポンスを実際に取得する必要があります）
-    setTimeout(() => {
-      const botResponse = {
-        text: 'こんにちは！私はチャットボットです。',
-        user: 'bot',
-        timestamp: new Date().toLocaleTimeString(),
-      };
-      setMessages((prevMessages) => [...prevMessages, botResponse]);
-    }, 1000);
   };
 
   // 新しいメッセージが追加されたときに自動的にスクロール
@@ -36,7 +54,6 @@ function ChatBot() {
       messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
     }
   }, [messages]);
-
 
   return (
     <div className="chat-bot">
