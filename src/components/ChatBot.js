@@ -67,6 +67,7 @@ function ChatBot() {
             key={index}
             className={`message ${message.user === 'user' ? 'user' : 'bot'}`}
           >
+            <span className="icon"><img class="icon" src="img/icon.png" alt=""></span>
             <span className="message-text">{message.text}</span>
             <span className="message-timestamp">{message.timestamp}</span>
           </div>
