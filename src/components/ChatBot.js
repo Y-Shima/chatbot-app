@@ -8,6 +8,7 @@ function ChatBot() {
   const [inputMessage, setInputMessage] = useState('');
   const messageContainerRef = useRef(null);
 
+  // APIにメッセージを送信して、応答を吹き出しに追加する
   const sendMessageToBot = async () => {
     try {
       const response = await fetch(API_URL, {
@@ -30,15 +31,16 @@ function ChatBot() {
     }
   };
 
+  // 吹き出しを追加する
   const addMessage = (text, user) => {
     const newMessage = {
       text: text,
       user: user,
-      timestamp: new Date().toLocaleTimeString(),
     };
     setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
 
+  // 送信ボタンが押された時の処理
   const handleSendMessage = () => {
     if (inputMessage.trim() === '') return;
 
@@ -67,9 +69,7 @@ function ChatBot() {
             key={index}
             className={`message ${message.user === 'user' ? 'user' : 'bot'}`}
           >
-            <span className="icon"><img class="icon" src="img/icon.png" alt=""></span>
             <span className="message-text">{message.text}</span>
-            <span className="message-timestamp">{message.timestamp}</span>
           </div>
         ))}
       </div>

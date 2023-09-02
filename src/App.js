@@ -6,9 +6,6 @@ import ChatBot from './components/ChatBot';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>チャットボット</h1>
-      </header>
       <main className="App-main">
         <ChatBot />
       </main>

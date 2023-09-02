@@ -8,28 +8,24 @@ body {
   background-color: #f0f0f0; /* ページの背景色 */
 }
 
-/* ヘッダー */
-.App-header {
-  background-color: #00bfff; /* ヘッダーの背景色 */
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
 /* メインコンテンツ */
 .App-main {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 80px); /* ヘッダーの高さを考慮したコンテンツの最小高さ */
+  height: 500px;
+  min-height: calc(100vh - 20px); /* ヘッダーの高さを考慮したコンテンツの最小高さ */
 }
 
 /* チャットボットコンテナ */
 .chat-bot {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 10px 0;
+  width: 80%;
+  max-width: 1200px;
+  height: 85%;
+  max-height: 1200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 10px;
   background: #769ece;
   font-size: 16px;
   color: #333;
@@ -44,7 +40,7 @@ body {
 
 /* メッセージコンテナ */
 .message-container {
-  /*max-height: 400px;*/ /* メッセージ表示エリアの最大高さ */
+  max-height: 500px; /* メッセージ表示エリアの最大高さ */
   overflow-y: auto; /* スクロール可能にする */
   padding: 10px;
 }
@@ -53,7 +49,7 @@ body {
 .message {
   position: relative;
   display: inline-block;
-  max-width: 192px;
+  max-width: 70%;
   margin: 8px 0 0;
   padding: 9px 14px;
   border-radius: 19px;
@@ -94,7 +90,7 @@ body {
 /* ボットメッセージ */
 .message.bot {
   float: left;
-  margin-left: 62px;
+  margin-left: 12px;
   background: white;
   /*background-color: #f0f0f0;*/ /* ボットメッセージの背景色 */
   /*color: black;
@@ -105,19 +101,16 @@ body {
   border-radius: 18px 0 6px 18px/18px 0 1px 18px;
   box-shadow: -3px -15px 0 -5px white inset;
 }
-.icon {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  left: -54px;
-  top: -2px;
-  border-radius: 20px;
-}
 
 /* 入力エリア */
 .input-container {
   display: flex;
-  padding: 10px;
+  padding: 0px;
+  align-items: flex-end;
+  position: absolute;
+  width: 80%;
+  max-width: 800px;
+  bottom: 8pt;
 }
 
 input[type="text"] {
