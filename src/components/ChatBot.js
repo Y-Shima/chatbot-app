@@ -67,7 +67,7 @@ function ChatBot() {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.user === 'user' ? 'user' : 'bot'}`}
+            className={`message ${message.user}`}
           >
             <span className="message-text">{message.text}</span>
           </div>
