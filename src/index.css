@@ -25,18 +25,12 @@ header {
 /* メインコンテンツのスタイリング */
 main {
   flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* チャットボットコンテナのスタイリング */
 .chat-bot {
-  background-color: white;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  width: 300px;
-  max-width: 100%;
 }
 
 /* その他のスタイリングルールをここに追加してください */
