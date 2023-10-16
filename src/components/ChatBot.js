@@ -50,6 +50,12 @@ function ChatBot() {
     setInputMessage('');
   };
 
+  const handleInputKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
   // 新しいメッセージが追加されたときに自動的にスクロール
   useEffect(() => {
     if (messageContainerRef.current) {
@@ -65,10 +71,7 @@ function ChatBot() {
         ref={messageContainerRef} // メッセージ表示エリアへの参照を追加
       >
         {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.user}`}
-          >
+          <div key={index} className={`message ${message.user}`}>
             <span className="message-text">{message.text}</span>
           </div>
         ))}
@@ -80,6 +83,7 @@ function ChatBot() {
           placeholder="メッセージを入力..."
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
+          onKeyPress={handleInputKeyPress} // Enterキーのイベントをリッスン
         />
         <button onClick={handleSendMessage}>送信</button>
       </div>
